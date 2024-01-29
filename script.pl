@@ -8,7 +8,7 @@ open FH, "<$file" or die "can't open $file. $! \n";
 
 my ($name, $location, $mapref, $type, $description);
 
-while (FH) {
+while (<FH>) {
     chop;
     ($name, $location, $mapref, $type, $description) = split(/:/, $_);
 
@@ -21,8 +21,10 @@ while (FH) {
 if($found) {
     print "location: $name on the line $found\n";
     print "information on $name($type)\n";
-    print "Map: $mapref";
-    print "Description: $description";
+    print "Map: $mapref\n";
+    print "Description: $description\n";
+} else {
+    print "can't find it :(\n";
 }
 
 close FH;
